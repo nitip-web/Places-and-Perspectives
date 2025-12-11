@@ -1,29 +1,66 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useMemo } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import { Suspense, useMemo, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import locations from "../../data/locations.json";
 
-// Fix for default marker icons in Next.js
-if (typeof window !== "undefined") {
-  delete L.Icon.Default.prototype._getIconUrl;
-  L.Icon.Default.mergeOptions({
-    iconRetinaUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-    iconUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-    shadowUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  });
-}
+// Dynamically import Leaflet components with SSR disabled
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+
+const Popup = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Popup),
+  { ssr: false }
+);
 
 function ClusterMapContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const locationsParam = searchParams.get("locations");
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client before rendering map
+  useEffect(() => {
+    setIsClient(true);
+    
+    // Import Leaflet CSS only on client
+    if (typeof window !== "undefined") {
+      import("leaflet/dist/leaflet.css");
+    }
+  }, []);
+
+  // Fix Leaflet default markers after client is ready
+  useEffect(() => {
+    if (isClient && typeof window !== "undefined") {
+      import("leaflet").then((L) => {
+        const DefaultIcon = L.default.Icon.Default;
+        if (DefaultIcon && DefaultIcon.prototype._getIconUrl) {
+          delete DefaultIcon.prototype._getIconUrl;
+        }
+        L.default.Icon.Default.mergeOptions({
+          iconRetinaUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+          iconUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+          shadowUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+        });
+      });
+    }
+  }, [isClient]);
 
   // Parse location slugs and find matching locations
   const clusterLocations = useMemo(() => {
@@ -51,6 +88,14 @@ function ClusterMapContent() {
         <button onClick={() => router.push("/")} style={{ marginTop: 20 }}>
           Back to Globe
         </button>
+      </div>
+    );
+  }
+
+  if (!isClient) {
+    return (
+      <div style={{ padding: 40 }}>
+        <div>Loading map...</div>
       </div>
     );
   }
@@ -140,4 +185,3 @@ export default function ClusterMapPage() {
     </Suspense>
   );
 }
-
