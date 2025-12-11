@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Athens, Greece",
+    "slug": "athens-greece",
+    "lat": 37.9838,
+    "lng": 23.7275,
+    "image": "/images/athens-greece.jpg",
+    "description": "Historic capital city known for ancient landmarks and rich cultural heritage."
+  },
+  {
+    "name": "Bir, Himachal",
+    "slug": "bir-himachal",
+    "lat": 32.0373,
+    "lng": 76.7173,
+    "image": "/images/bir-himachal.jpg",
+    "description": "A peaceful mountain town known for paragliding and Tibetan monasteries."
+  },
+  {
+    "name": "Borivali National Park, Mumbai",
+    "slug": "borivali-national-park-mumbai",
+    "lat": 19.2147,
+    "lng": 72.9106,
+    "image": "/images/borivali-national-park-mumbai.jpg",
+    "description": "A large national park within Mumbai known for its greenery and wildlife."
+  },
+  {
+    "name": "Washington DC, USA",
+    "slug": "washington-dc-usa",
+    "lat": 38.9072,
+    "lng": -77.0369,
+    "image": "/images/washington-dc-usa.jpg",
+    "description": "The capital city of the United States known for monuments and museums."
+  },
+  {
+    "name": "Durga Puja, Kolkata, India",
+    "slug": "durga-puja-kolkata-india",
+    "lat": 22.5726,
+    "lng": 88.3639,
+    "image": "/images/durga-puja-kolkata-india.jpg",
+    "description": "A grand cultural and religious festival celebrated with art, lights and music."
+  },
+  {
+    "name": "Khamkar Masala, Lalbaug, Mumbai",
+    "slug": "khamkar-masala-lalbaug-mumbai",
+    "lat": 18.9984,
+    "lng": 72.8397,
+    "image": "/images/khamkar-masala-lalbaug-mumbai.jpg",
+    "description": "A famous local spice and food spot in the heart of Mumbai."
+  },
+  {
+    "name": "Kolkata, India",
+    "slug": "kolkata-india",
+    "lat": 22.5726,
+    "lng": 88.3639,
+    "image": "/images/kolkata-india.jpg",
+    "description": "A cultural capital of India known for literature, art and colonial architecture."
+  },
+  {
+    "name": "Panchgani, India",
+    "slug": "panchgani-india",
+    "lat": 17.9237,
+    "lng": 73.8007,
+    "image": "/images/panchgani-india.jpg",
+    "description": "A scenic hill station known for viewpoints and strawberry farms."
+  },
+  {
+    "name": "Philadelphia, Pennsylvania, USA",
+    "slug": "philadelphia-pennsylvania-usa",
+    "lat": 39.9526,
+    "lng": -75.1652,
+    "image": "/images/philadelphia-pennsylvania-usa.jpg",
+    "description": "A historic American city known for the Liberty Bell and rich heritage."
+  },
+  {
+    "name": "Santorini, Greece",
+    "slug": "santorini-greece",
+    "lat": 36.3932,
+    "lng": 25.4615,
+    "image": "/images/santorini-greece.jpg",
+    "description": "A picturesque island famous for whitewashed buildings and sunsets."
+  },
+  {
+    "name": "Burj Khalifa, Dubai",
+    "slug": "burj-khalifa-dubai",
+    "lat": 25.1972,
+    "lng": 55.2744,
+    "image": "/images/burj-khalifa-dubai.jpg",
+    "description": "Home to the world’s tallest building and a symbol of modern Dubai."
+  }
+]
